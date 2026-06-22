@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muhammed Rashid K K | Software Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -574,10 +576,22 @@
     }
 
     .timeline-company {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       font-size: 0.85rem;
       color: var(--purple);
       font-weight: 600;
       margin-bottom: 1rem;
+    }
+    .timeline-company-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      object-fit: contain;
+      background: #fff;
+      padding: 2px;
+      flex-shrink: 0;
     }
 
     .timeline-bullets {
@@ -672,10 +686,37 @@
     .tech-chip {
       font-size: 0.7rem;
       font-family: 'Fira Code', monospace;
-      padding: 0.2rem 0.6rem;
+      padding: 0.25rem 0.65rem;
       border-radius: 4px;
       font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      position: relative;
+      cursor: default;
     }
+    .tech-chip i { font-size: 1rem; line-height: 1; }
+    .tech-chip[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg3);
+      color: var(--text);
+      font-size: 0.68rem;
+      font-family: 'Inter', sans-serif;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      border: 1px solid var(--border);
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .tech-chip[data-tooltip]:hover::after { opacity: 1; }
 
     /* ── EDUCATION ── */
     #education { background: var(--bg2); }
@@ -874,6 +915,18 @@
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .nav-links { display: none; }
       .ft-1, .ft-2, .ft-3 { display: none; }
+
+      /* ── TIMELINE MOBILE ── */
+      .timeline { padding-left: 1.25rem; }
+      .timeline-item { padding-left: 1.25rem; margin-bottom: 2rem; }
+      .timeline-item::before { left: -1.65rem; width: 10px; height: 10px; }
+      .timeline-card { padding: 1.25rem; }
+      .timeline-card:hover { transform: none; }
+      .timeline-meta { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .timeline-role { font-size: 0.95rem; }
+      .timeline-period { font-size: 0.7rem; align-self: flex-start; }
+      .timeline-company { font-size: 0.8rem; }
+      .timeline-bullets li { font-size: 0.82rem; }
     }
 
     /* ── CUSTOM SCROLLBAR ── */
@@ -1006,7 +1059,7 @@
     <div class="hero-photo-wrap">
       <div class="photo-ring">
         <div class="photo-inner">
-          <img src="Rashid DP.PNG" alt="Muhammed Rashid K K" />
+          <img src="assets/rashid-pic.png" alt="Muhammed Rashid K K" />
         </div>
       </div>
       <div class="floating-tech ft-1">React Native</div>
@@ -1177,7 +1230,7 @@
             <span class="timeline-period">MAR 2022 – Present</span>
           </div>
           <div class="timeline-company">
-            <i class="fas fa-building" style="margin-right:6px;opacity:0.6"></i>
+            <img src="assets/cgs-logo.png" alt="Ceegees Software Solutions" class="timeline-company-logo" />
             Ceegees Software Solutions Pvt Ltd, Bangalore
           </div>
           <ul class="timeline-bullets">
@@ -1199,7 +1252,7 @@
             <span class="timeline-period">APR 2021 – FEB 2022</span>
           </div>
           <div class="timeline-company">
-            <i class="fas fa-building" style="margin-right:6px;opacity:0.6"></i>
+            <img src="assets/upsquad-logo.jpg" alt="Upsquad Platforms" class="timeline-company-logo" />
             Upsquad Platforms Pvt Ltd, Kochi
           </div>
           <ul class="timeline-bullets">
@@ -1219,7 +1272,7 @@
             <span class="timeline-period">FEB 2020 – MAR 2021</span>
           </div>
           <div class="timeline-company">
-            <i class="fas fa-building" style="margin-right:6px;opacity:0.6"></i>
+            <img src="assets/kitebe-logo.jpeg" alt="Kitebe Pvt Ltd" class="timeline-company-logo" />
             Kitebe Pvt Ltd, Kochi
           </div>
           <ul class="timeline-bullets">
@@ -1254,13 +1307,13 @@
           Built interactive dashboards to visualize key supply chain KPIs and enabled data-driven decision-making.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-blue">Python</span>
-          <span class="tech-chip chip-blue">Flask</span>
-          <span class="tech-chip chip-green">BigQuery</span>
-          <span class="tech-chip chip-blue">ReactJS</span>
-          <span class="tech-chip chip-yellow">SQL</span>
-          <span class="tech-chip chip-green">GCP</span>
-          <span class="tech-chip chip-purple">Pandas</span>
+          <span class="tech-chip chip-blue" data-tooltip="Python — General purpose language"><i class="devicon-python-plain colored"></i> Python</span>
+          <span class="tech-chip chip-blue" data-tooltip="Flask — Python web framework"><i class="devicon-flask-plain"></i> Flask</span>
+          <span class="tech-chip chip-green" data-tooltip="Google BigQuery — Cloud data warehouse"><i class="devicon-googlecloud-plain colored"></i> BigQuery</span>
+          <span class="tech-chip chip-blue" data-tooltip="React.js — UI component library"><i class="devicon-react-plain colored"></i> ReactJS</span>
+          <span class="tech-chip chip-yellow" data-tooltip="SQL — Structured Query Language"><i class="fas fa-database"></i> SQL</span>
+          <span class="tech-chip chip-green" data-tooltip="Google Cloud Platform — Cloud infrastructure"><i class="devicon-googlecloud-plain colored"></i> GCP</span>
+          <span class="tech-chip chip-purple" data-tooltip="Pandas — Python data analysis library"><i class="devicon-pandas-plain colored"></i> Pandas</span>
         </div>
       </div>
 
@@ -1273,11 +1326,11 @@
           interactive vehicle history queries. Implemented PDI inspection modules and role-based access control.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-green">NodeJS</span>
-          <span class="tech-chip chip-blue">Strapi</span>
-          <span class="tech-chip chip-blue">ReactJS</span>
-          <span class="tech-chip chip-purple">OpenAI API</span>
-          <span class="tech-chip chip-cyan">Framework7</span>
+          <span class="tech-chip chip-green" data-tooltip="Node.js — JavaScript runtime"><i class="devicon-nodejs-plain colored"></i> NodeJS</span>
+          <span class="tech-chip chip-blue" data-tooltip="Strapi — Open-source headless CMS"><i class="devicon-strapi-plain colored"></i> Strapi</span>
+          <span class="tech-chip chip-blue" data-tooltip="React.js — UI component library"><i class="devicon-react-plain colored"></i> ReactJS</span>
+          <span class="tech-chip chip-purple" data-tooltip="OpenAI API — GPT & AI services"><i class="fas fa-brain"></i> OpenAI API</span>
+          <span class="tech-chip chip-cyan" data-tooltip="Framework7 — Mobile UI framework"><i class="fas fa-mobile-alt"></i> Framework7</span>
         </div>
         <a href="https://carq.io/" target="_blank" class="project-link">
           <i class="fas fa-arrow-up-right-from-square"></i> Visit Site
@@ -1292,13 +1345,13 @@
           keep them in personalized watchlists for future reference.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-blue">React Native</span>
-          <span class="tech-chip chip-purple">Redux</span>
-          <span class="tech-chip chip-yellow">Firebase</span>
-          <span class="tech-chip chip-green">NodeJS</span>
-          <span class="tech-chip chip-green">Express</span>
-          <span class="tech-chip chip-cyan">PostgreSQL</span>
-          <span class="tech-chip chip-blue">AWS S3</span>
+          <span class="tech-chip chip-blue" data-tooltip="React Native — Cross-platform mobile framework"><i class="devicon-react-plain colored"></i> React Native</span>
+          <span class="tech-chip chip-purple" data-tooltip="Redux — Predictable state management"><i class="devicon-redux-plain colored"></i> Redux</span>
+          <span class="tech-chip chip-yellow" data-tooltip="Firebase — Backend as a service"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+          <span class="tech-chip chip-green" data-tooltip="Node.js — JavaScript runtime"><i class="devicon-nodejs-plain colored"></i> NodeJS</span>
+          <span class="tech-chip chip-green" data-tooltip="Express.js — Minimal Node.js framework"><i class="devicon-express-plain"></i> Express</span>
+          <span class="tech-chip chip-cyan" data-tooltip="PostgreSQL — Relational database"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+          <span class="tech-chip chip-blue" data-tooltip="Amazon S3 — Cloud object storage"><i class="devicon-amazonwebservices-plain colored"></i> AWS S3</span>
         </div>
       </div>
 
@@ -1310,11 +1363,11 @@
           Full-featured scheduling system with real-time availability management.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-blue">ReactJS</span>
-          <span class="tech-chip chip-purple">Redux</span>
-          <span class="tech-chip chip-green">NodeJS</span>
-          <span class="tech-chip chip-green">Express</span>
-          <span class="tech-chip chip-cyan">MongoDB</span>
+          <span class="tech-chip chip-blue" data-tooltip="React.js — UI component library"><i class="devicon-react-plain colored"></i> ReactJS</span>
+          <span class="tech-chip chip-purple" data-tooltip="Redux — Predictable state management"><i class="devicon-redux-plain colored"></i> Redux</span>
+          <span class="tech-chip chip-green" data-tooltip="Node.js — JavaScript runtime"><i class="devicon-nodejs-plain colored"></i> NodeJS</span>
+          <span class="tech-chip chip-green" data-tooltip="Express.js — Minimal Node.js framework"><i class="devicon-express-plain"></i> Express</span>
+          <span class="tech-chip chip-cyan" data-tooltip="MongoDB — NoSQL document database"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
         </div>
       </div>
 
@@ -1326,9 +1379,9 @@
           messaging, shared family spaces and seamless cross-platform experience on iOS and Android.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-blue">React Native</span>
-          <span class="tech-chip chip-purple">Redux</span>
-          <span class="tech-chip chip-yellow">Firebase</span>
+          <span class="tech-chip chip-blue" data-tooltip="React Native — Cross-platform mobile framework"><i class="devicon-react-plain colored"></i> React Native</span>
+          <span class="tech-chip chip-purple" data-tooltip="Redux — Predictable state management"><i class="devicon-redux-plain colored"></i> Redux</span>
+          <span class="tech-chip chip-yellow" data-tooltip="Firebase — Backend as a service"><i class="devicon-firebase-plain colored"></i> Firebase</span>
         </div>
         <a href="https://familiconnect.com/" target="_blank" class="project-link">
           <i class="fas fa-arrow-up-right-from-square"></i> Visit Site
@@ -1343,10 +1396,10 @@
           Integrates with Metamask for wallet interactions and uses GraphQL for efficient data querying.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-green">NodeJS</span>
-          <span class="tech-chip chip-cyan">PostgreSQL</span>
-          <span class="tech-chip chip-pink">GraphQL</span>
-          <span class="tech-chip chip-purple">Metamask</span>
+          <span class="tech-chip chip-green" data-tooltip="Node.js — JavaScript runtime"><i class="devicon-nodejs-plain colored"></i> NodeJS</span>
+          <span class="tech-chip chip-cyan" data-tooltip="PostgreSQL — Relational database"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+          <span class="tech-chip chip-pink" data-tooltip="GraphQL — API query language"><i class="devicon-graphql-plain colored"></i> GraphQL</span>
+          <span class="tech-chip chip-purple" data-tooltip="MetaMask — Ethereum wallet integration"><i class="fab fa-ethereum"></i> Metamask</span>
         </div>
       </div>
 
@@ -1361,14 +1414,14 @@
           token operations, push notifications (native &amp; VAPID), and a 5-step onboarding wizard for new institutions.
         </div>
         <div class="project-tech">
-          <span class="tech-chip chip-blue">React Native</span>
-          <span class="tech-chip chip-blue">Expo Router v4</span>
-          <span class="tech-chip chip-purple">TypeScript</span>
-          <span class="tech-chip chip-green">Supabase</span>
-          <span class="tech-chip chip-cyan">PostgreSQL</span>
-          <span class="tech-chip chip-green">Deno Edge Functions</span>
-          <span class="tech-chip chip-yellow">Web Push (VAPID)</span>
-          <span class="tech-chip chip-green">AWS S3</span>
+          <span class="tech-chip chip-blue" data-tooltip="React Native — Cross-platform mobile framework"><i class="devicon-react-plain colored"></i> React Native</span>
+          <span class="tech-chip chip-blue" data-tooltip="Expo Router v4 — File-based navigation for React Native"><i class="devicon-expo-plain colored"></i> Expo Router v4</span>
+          <span class="tech-chip chip-purple" data-tooltip="TypeScript — Typed superset of JavaScript"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+          <span class="tech-chip chip-green" data-tooltip="Supabase — Open-source Firebase alternative"><i class="devicon-supabase-plain colored"></i> Supabase</span>
+          <span class="tech-chip chip-cyan" data-tooltip="PostgreSQL — Relational database"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+          <span class="tech-chip chip-green" data-tooltip="Deno — Secure JS/TS runtime for edge functions"><i class="devicon-denojs-plain colored"></i> Deno Edge Functions</span>
+          <span class="tech-chip chip-yellow" data-tooltip="Web Push API — Browser push notifications (VAPID)"><i class="fas fa-bell"></i> Web Push (VAPID)</span>
+          <span class="tech-chip chip-green" data-tooltip="Amazon S3 — Cloud object storage"><i class="devicon-amazonwebservices-plain colored"></i> AWS S3</span>
         </div>
       </div>
 
