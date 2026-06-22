@@ -231,6 +231,13 @@ function initCarousels() {
     const images = [...root.querySelectorAll('.screenshots-track img')];
     let idx = 0;
 
+    // Hide nav controls when there's only one image
+    if (images.length <= 1) {
+      root.querySelector('.sc-prev').style.display = 'none';
+      root.querySelector('.sc-next').style.display = 'none';
+      root.querySelector('.sc-dots').style.display = 'none';
+    }
+
     function update() {
       track.style.transform = `translateX(-${idx * 100}%)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === idx));
