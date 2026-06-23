@@ -18,6 +18,7 @@ function initAll() {
   initNavScroll();
   initTyping();
   initCarousels();
+  initReadMore();
 }
 
 /* ── PARTICLE CANVAS ── */
@@ -160,6 +161,22 @@ function initTyping() {
     setTimeout(type, deleting ? 60 : 90);
   }
   setTimeout(type, 1000);
+}
+
+/* ── READ MORE (description only) ── */
+function initReadMore() {
+  document.querySelectorAll('.project-card').forEach(card => {
+    const desc = card.querySelector('.project-desc');
+    if (!desc) return;
+    const btn = document.createElement('button');
+    btn.className = 'read-more-btn';
+    btn.textContent = '+ Read more';
+    desc.after(btn);
+    btn.addEventListener('click', () => {
+      const expanded = desc.classList.toggle('expanded');
+      btn.textContent = expanded ? '− Show less' : '+ Read more';
+    });
+  });
 }
 
 loadSections();
